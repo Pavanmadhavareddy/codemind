@@ -1,0 +1,13 @@
+class Solution(object):
+   def findNumbers(self, nums):
+      str_num = map(str, nums)
+      count = 0
+      for s in str_num:
+         if len(s) % 2 == 0:
+            count += 1
+      return count
+ob = Solution()
+c1=int(input())
+nums=list(map(int,input().split()))
+k= ob.findNumbers(nums)
+print(k)
