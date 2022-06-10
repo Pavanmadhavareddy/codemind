@@ -1,0 +1,30 @@
+from functools import cmp_to_key
+ 
+def cmp(a, b):
+    return a - b
+ 
+def minSwaps(nums):
+    Len = len(nums)
+    map = {}
+    for i in range(Len):
+        map[nums[i]] = i
+ 
+    nums = sorted(nums, key = cmp_to_key(cmp))
+    visited = [False for col in range(Len)]
+    ans = 0
+    for i in range(Len):
+        if (visited[i] or map[nums[i]] == i):
+            continue
+ 
+        j,cycle_size = i, 0
+        while (visited[j] == False):
+            visited[j] = True
+            j = map[nums[j]]
+            cycle_size += 1
+        if (cycle_size > 0):
+            ans += (cycle_size - 1)
+ 
+    return ans
+n=int(input())
+a = list(map(int,input().split()))
+print(minSwaps(a))
